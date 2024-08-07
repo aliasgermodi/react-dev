@@ -5,6 +5,12 @@ const SearchFilter = ({ onSearch }) => {
   const [showInput, setShowInput] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+    onSearch(value);
+  };
+
   return (
     <div>
       <button onClick={() => setShowInput(!showInput)}>🔍</button>
@@ -12,10 +18,7 @@ const SearchFilter = ({ onSearch }) => {
         <input
           type="text"
           value={searchValue}
-          onChange={(e) => {
-            setSearchValue(e.target.value);
-            onSearch(e.target.value);
-          }}
+          onChange={handleSearchChange}
         />
       )}
     </div>

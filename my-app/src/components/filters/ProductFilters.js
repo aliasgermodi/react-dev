@@ -4,11 +4,11 @@ import axios from 'axios';
 import { AppContext } from '../../context/AppContext';
 
 const ProductFilters = () => {
-  const { setProducts, setPageSize } = useContext(AppContext);
+  const { setProducts, pageSize } = useContext(AppContext);
   const [filterValue, setFilterValue] = useState('');
 
   const handleFilter = async () => {
-    const response = await axios.get(`https://dummyjson.com/products?limit=${setPageSize}`);
+    const response = await axios.get(`https://dummyjson.com/products?limit=${pageSize}&query=${filterValue}`);
     setProducts(response.data.products);
   };
 
